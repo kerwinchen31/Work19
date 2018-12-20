@@ -1,6 +1,14 @@
 #include "pipe_networking.h"
 #include <stdio.h>
 #include <ctype.h>
+#include <signal.h>
+
+static void sighandler(int signo){
+  if (signo == SIGINT){
+    remove("serverR");
+    exit(0);
+  }
+}
 
 void mom(char* str){
   int i = 0;
@@ -11,7 +19,8 @@ void mom(char* str){
 }
 
 int main() {
-
+  signal(SIGINT, sighandler);
+  
   int to_client;
   int from_client;
 
