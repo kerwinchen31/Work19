@@ -29,11 +29,6 @@ int server_handshake(int *to_client) {
   read(fd1, smessagedos, 200);
   printf("client response: %s\n", smessagedos);
 
-  while(1){
-    *to_client = open("clientR", O_WRONLY);
-    write(*to_client, "data: ", 6);
-    //printf("%s", s);
-  }
   return fd1;
 }
 
@@ -65,11 +60,5 @@ int client_handshake(int *to_server) {
   printf("client sends response to server\n");
   write(*to_server, "response", 7);
 
-  
-  char* s;
-  fgets(s, 50, stdin);
-  //char m[50];
-  //read(fd2, m, 50);
-  
   return fd2;
 }
